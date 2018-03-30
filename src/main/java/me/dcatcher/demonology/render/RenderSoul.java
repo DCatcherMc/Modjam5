@@ -1,6 +1,7 @@
 package me.dcatcher.demonology.render;
 
 import me.dcatcher.demonology.entities.EntitySoul;
+import me.dcatcher.demonology.render.model.ModelSoul;
 import net.minecraft.client.model.ModelBanner;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelZombie;
@@ -14,13 +15,13 @@ import javax.annotation.Nullable;
 
 public class RenderSoul extends RenderLiving<EntitySoul> {
 
-    private ResourceLocation mobTexture = new ResourceLocation("textures/entity/zombie/zombie.png");
+    private ResourceLocation mobTexture = new ResourceLocation("demonology:textures/entity/soul.png");
 
     public static final Factory FACTORY = new Factory();
 
 
     public RenderSoul(RenderManager rendermanagerIn) {
-        super(rendermanagerIn, new ModelZombie(), 0.5F);
+        super(rendermanagerIn, new ModelSoul(), 0.0f);
     }
 
     @Nullable
