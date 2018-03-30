@@ -1,9 +1,11 @@
 package me.dcatcher.demonology.entities;
 
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.ai.EntityAIBase;
+import net.minecraft.entity.ai.EntityAIRunAroundLikeCrazy;
+import net.minecraft.entity.ai.RandomPositionGenerator;
+import net.minecraft.entity.passive.AbstractHorse;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class EntitySoul extends EntityCreature {
@@ -20,10 +22,8 @@ public class EntitySoul extends EntityCreature {
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISoulDisperse(this, 100));
-        this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIWander(this, 0.25));
-        this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(4, new EntityAILookIdle(this));
+        this.tasks.addTask(1, new EntityAISoulPanic(this, 0.5));
+
     }
 
 
@@ -47,6 +47,54 @@ public class EntitySoul extends EntityCreature {
             System.out.println("DEATH TIME");
             super.startExecuting();
             this.entitySoul.setDead();
+        }
+    }
+
+    class EntityAISoulPanic extends EntityAIBase {
+
+        private EntitySoul entitySoul;
+        private double targetX;
+        private double targetY;
+        private double targetZ;
+        private double speed;
+
+        public EntityAISoulPanic(EntitySoul entitySoul, double speed) {
+            this.entitySoul = entitySoul;
+            this.speed = speed;
+        }
+
+        @Override
+        public boolean shouldExecute() {
+            // generate a random point within 5 horiz and 4 vert blocks
+            Vec3d vec3d = RandomPositionGenerator.findRandomTarget(this.entitySoul, 5, 4);
+
+            // check if we failed to gen for some reason
+            if (vec3d == null) {
+                return false;
+            } else {
+                this.targetX = vec3d.x;
+                this.targetY = vec3d.y;
+                this.targetZ = vec3d.z;
+                return true;
+            }
+        }
+
+        public void startExecuting() {
+            // use the random spot to generate a path + move there
+            this.entitySoul.getNavigator().tryMoveToXYZ(this.targetX, this.targetY, this.targetZ, this.speed);
+        }
+
+
+        public boolean shouldContinueExecuting() {
+            // keep going until we cant get to the point anymore
+            return !this.entitySoul.getNavigator().noPath();
+        }
+
+
+        @Override
+        public void updateTask() {
+            super.updateTask();
+            // not much to do here!
         }
     }
 
