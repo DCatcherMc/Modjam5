@@ -1,5 +1,6 @@
 package me.dcatcher.demonology;
 
+import me.dcatcher.demonology.init.ModBlocks;
 import me.dcatcher.demonology.proxy.IProxy;
 import me.dcatcher.demonology.util.TabDemonology;
 import net.minecraft.creativetab.CreativeTabs;
@@ -41,7 +42,7 @@ public class Demonology
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-
+        ModBlocks.registerTileEntities();
     }
 
 }

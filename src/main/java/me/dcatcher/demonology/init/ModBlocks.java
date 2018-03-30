@@ -1,9 +1,11 @@
 package me.dcatcher.demonology.init;
 
 import me.dcatcher.demonology.block.BlockBasicAltar;
+import me.dcatcher.demonology.block.BlockTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
 public class ModBlocks {
@@ -26,5 +28,8 @@ public class ModBlocks {
         blockBasicAltar.registerItemModel(Item.getItemFromBlock(blockBasicAltar));
     }
 
+    public static void registerTileEntities() {
+        GameRegistry.registerTileEntity(((BlockTileEntity<?>)blockBasicAltar).getTileEntityClass(), blockBasicAltar.getRegistryName().toString());
+    }
 
 }

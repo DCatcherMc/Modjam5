@@ -4,7 +4,8 @@
 		"2": "blocks/stone",
 		"3": "blocks/cobblestone",
 		"4": "blocks/stone_slab_top",
-		"5": "blocks/log_oak_top"
+		"5": "blocks/log_oak_top",
+		"particle": "blocks/cobblestone"
 	},
 	"elements": [
 		{
