@@ -36,6 +36,7 @@ public class Demonology
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
         random = new Random();
+        proxy.preInit(event);
     }
 
     @EventHandler
