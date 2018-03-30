@@ -1,0 +1,11 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "demonology:altar_basic",
+        "transform": "forge:default-block"
+    },
+    "variants": {
+        "normal": [{}],
+        "inventory": [{}]
+    }
+}

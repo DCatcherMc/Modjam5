@@ -1,0 +1,9 @@
+{
+    "parent": "demonology:block/altar_basic",
+    "display": {
+        "thirdperson_righthand": "forge:default-block",
+        "firstperson_righthand": "forge:default-block",
+        "gui": "forge:default-block",
+        "ground": "forge:default-block"
+    }
+}

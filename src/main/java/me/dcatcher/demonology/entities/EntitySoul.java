@@ -2,9 +2,7 @@ package me.dcatcher.demonology.entities;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIRunAroundLikeCrazy;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.entity.passive.AbstractHorse;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
@@ -16,14 +14,12 @@ public class EntitySoul extends EntityCreature {
         super(worldIn);
         this.birthTime = worldIn.getWorldTime();
         this.setAIMoveSpeed(0.25f);
-
     }
 
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISoulDisperse(this, 100));
         this.tasks.addTask(1, new EntityAISoulPanic(this, 0.5));
-
     }
 
 
@@ -44,7 +40,6 @@ public class EntitySoul extends EntityCreature {
 
         @Override
         public void startExecuting() {
-            System.out.println("DEATH TIME");
             super.startExecuting();
             this.entitySoul.setDead();
         }
