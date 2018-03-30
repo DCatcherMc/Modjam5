@@ -1,5 +1,7 @@
 package me.dcatcher.demonology;
 
+import me.dcatcher.demonology.util.TabDemonology;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -17,6 +19,8 @@ public class Demonology
 
     @Mod.Instance(Demonology.MODID)
     public static Demonology instance;
+
+    public static CreativeTabs tabDemonology = new TabDemonology("demonology");
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
