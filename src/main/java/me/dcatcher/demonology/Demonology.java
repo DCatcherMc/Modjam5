@@ -10,6 +10,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Random;
+
 @Mod(modid = Demonology.MODID, name = Demonology.NAME, version = Demonology.VERSION)
 public class Demonology
 {
@@ -18,6 +20,8 @@ public class Demonology
     public static final String VERSION = "0.01";
 
     private static Logger logger;
+
+    public static Random random;
 
     @Mod.Instance(Demonology.MODID)
     public static Demonology instance;
@@ -31,6 +35,7 @@ public class Demonology
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
+        random = new Random();
     }
 
     @EventHandler
