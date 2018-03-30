@@ -1,9 +1,11 @@
 package me.dcatcher.demonology;
 
+import me.dcatcher.demonology.proxy.IProxy;
 import me.dcatcher.demonology.util.TabDemonology;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
@@ -19,6 +21,10 @@ public class Demonology
 
     @Mod.Instance(Demonology.MODID)
     public static Demonology instance;
+
+    @SidedProxy(clientSide = "me.dcatcher.demonology.proxy.ClientProxy",
+            serverSide = "me.dcatcher.demonology.proxy.CommonProxy")
+    public static IProxy proxy;
 
     public static CreativeTabs tabDemonology = new TabDemonology("demonology");
 
