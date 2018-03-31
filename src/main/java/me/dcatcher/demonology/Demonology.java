@@ -4,6 +4,8 @@ import me.dcatcher.demonology.init.ModBlocks;
 import me.dcatcher.demonology.proxy.IProxy;
 import me.dcatcher.demonology.util.*;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -14,6 +16,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Mod(modid = Demonology.MODID, name = Demonology.NAME, version = Demonology.VERSION)
@@ -29,6 +33,8 @@ public class Demonology
 
     @Mod.Instance(Demonology.MODID)
     public static Demonology instance;
+
+    public static List<AltarRecipe> altarRecipes = new ArrayList<>();
 
     @SidedProxy(clientSide = "me.dcatcher.demonology.proxy.ClientProxy",
             serverSide = "me.dcatcher.demonology.proxy.CommonProxy")
@@ -51,6 +57,12 @@ public class Demonology
     public void init(FMLInitializationEvent event) {
         ModBlocks.registerTileEntities();
         proxy.init(event);
+        Demonology.addRecipes();
+    }
+
+    private static void addRecipes() {
+        // test recipe please ignore
+        altarRecipes.add(new AltarRecipe(new Item[]{Item.getByNameOrId("wheat")}, Item.getByNameOrId("cookie"), 1));
     }
 
 }

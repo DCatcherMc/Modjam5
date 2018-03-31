@@ -1,6 +1,8 @@
 package me.dcatcher.demonology.block;
 
+import me.dcatcher.demonology.Demonology;
 import me.dcatcher.demonology.tileentities.TileEntityBasicAltar;
+import me.dcatcher.demonology.util.AltarRecipe;
 import me.dcatcher.demonology.util.DefaultSoulHandler;
 import me.dcatcher.demonology.util.ISoulHandler;
 import net.minecraft.block.material.Material;
@@ -32,10 +34,21 @@ public class BlockBasicAltar extends BlockTileEntity<TileEntityBasicAltar> {
             TileEntityBasicAltar te = this.getTileEntity(world, pos);
             if (player.inventory.getCurrentItem() == ItemStack.EMPTY || player.inventory.getCurrentItem().getItem() == Item.getByNameOrId("air")) {
                 // empty hand - trigger the crafting
-                ISoulHandler ish = DefaultSoulHandler.getHandler(player);
-                if (ish != null) {
-                    ish.removeHealth(1, player);
+
+                Item[] contents = te.getContents();
+                boolean crafting = false;
+                for (AltarRecipe recipe : Demonology.altarRecipes) {
+                    // check each recipe
+                    if (recipe.checkRecipe(contents)) {
+                        ItemStack st = new ItemStack(recipe.output, recipe.count);
+                        EntityItem ei = new EntityItem(world, pos.getX(), pos.getY() + 1, pos.getZ(), st);
+                        world.spawnEntity(ei);
+                        crafting = true;
+                        break;
+                    }
                 }
+                if (!crafting) this.dropAllItems(world, pos);
+                else te.clear();
             } else {
                 // place it on the altar
                 if (te.itemCount < 6) {
@@ -58,7 +71,7 @@ public class BlockBasicAltar extends BlockTileEntity<TileEntityBasicAltar> {
             EntityItem toDrop = new EntityItem(world, pos.getX(), pos.getY()+1, pos.getZ(), is);
             world.spawnEntity(toDrop);
         }
-        te.itemCount = 0;
+        te.clear();
     }
 
     @Override

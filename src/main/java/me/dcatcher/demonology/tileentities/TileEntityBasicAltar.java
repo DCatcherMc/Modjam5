@@ -55,16 +55,24 @@ public class TileEntityBasicAltar extends TileEntity {
         return new SPacketUpdateTileEntity(this.pos, -1, getUpdateTag());
     }
 
-    public void placeItem(Item item) {
-        iStackHandler.setStackInSlot(itemCount++, new ItemStack(item, 1));
-    }
-
-
     @Override
     public void markDirty() {
         super.markDirty();
         this.getWorld().markBlockRangeForRenderUpdate(pos, pos);
         this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos),3);
         this.getWorld().scheduleBlockUpdate(pos,this.getBlockType(),0,0);
+    }
+
+    public Item[] getContents() {
+        Item[] contents = new Item[this.itemCount];
+        for (int i = 0; i < this.itemCount; i++) {
+            contents[i] = this.iStackHandler.getStackInSlot(i).getItem();
+        }
+        return contents;
+    }
+
+    public void clear() {
+        this.itemCount = 0;
+        this.markDirty();
     }
 }
