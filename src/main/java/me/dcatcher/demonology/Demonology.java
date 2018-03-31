@@ -2,8 +2,14 @@ package me.dcatcher.demonology;
 
 import me.dcatcher.demonology.init.ModBlocks;
 import me.dcatcher.demonology.proxy.IProxy;
+import me.dcatcher.demonology.util.DefaultSoulHandler;
+import me.dcatcher.demonology.util.ISoulHandler;
+import me.dcatcher.demonology.util.SoulStorage;
 import me.dcatcher.demonology.util.TabDemonology;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -31,6 +37,9 @@ public class Demonology
             serverSide = "me.dcatcher.demonology.proxy.CommonProxy")
     public static IProxy proxy;
 
+    @CapabilityInject(ISoulHandler.class)
+    public static final Capability<ISoulHandler> CAPABILITY_SOUL = null;
+
     public static CreativeTabs tabDemonology = new TabDemonology("demonology");
 
     @EventHandler
@@ -38,6 +47,7 @@ public class Demonology
         logger = event.getModLog();
         random = new Random();
         proxy.preInit(event);
+        CapabilityManager.INSTANCE.register(ISoulHandler.class, new SoulStorage(), DefaultSoulHandler::new);
     }
 
     @EventHandler

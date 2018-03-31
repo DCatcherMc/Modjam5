@@ -1,9 +1,11 @@
 package me.dcatcher.demonology.block;
 
+import me.dcatcher.demonology.Demonology;
 import me.dcatcher.demonology.tileentities.TileEntityBasicAltar;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
@@ -28,7 +30,8 @@ public class BlockBasicAltar extends BlockTileEntity<TileEntityBasicAltar> {
             TileEntityBasicAltar te = this.getTileEntity(world, pos);
             if (player.inventory.getCurrentItem() == ItemStack.EMPTY) {
                 // empty hand - trigger the crafting
-//                InventoryHelper.dropInventoryItems(world, pos, te.iStackHandler); todo
+//                InventoryHelper.dropInventoryItems(world, pos, te.iStackHandler); todo fix dis
+                player.getCapability(Demonology.CAPABILITY_SOUL, EnumFacing.DOWN).removeHealth(1.0, player);
             } else {
                 // place it on the altar
 
