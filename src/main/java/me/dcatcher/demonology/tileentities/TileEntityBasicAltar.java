@@ -59,4 +59,12 @@ public class TileEntityBasicAltar extends TileEntity {
         iStackHandler.setStackInSlot(itemCount++, new ItemStack(item, 1));
     }
 
+
+    @Override
+    public void markDirty() {
+        super.markDirty();
+        this.getWorld().markBlockRangeForRenderUpdate(pos, pos);
+        this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos),3);
+        this.getWorld().scheduleBlockUpdate(pos,this.getBlockType(),0,0);
+    }
 }

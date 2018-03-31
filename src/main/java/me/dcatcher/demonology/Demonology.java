@@ -50,6 +50,7 @@ public class Demonology
     @EventHandler
     public void init(FMLInitializationEvent event) {
         ModBlocks.registerTileEntities();
+        proxy.init(event);
     }
 
 }

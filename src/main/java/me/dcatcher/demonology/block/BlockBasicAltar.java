@@ -23,6 +23,7 @@ public class BlockBasicAltar extends BlockTileEntity<TileEntityBasicAltar> {
 
     public BlockBasicAltar(Material blockMaterialIn, String name) {
         super(blockMaterialIn, name);
+
     }
 
     @Override
@@ -41,7 +42,6 @@ public class BlockBasicAltar extends BlockTileEntity<TileEntityBasicAltar> {
                     Item toAdd = player.inventory.getCurrentItem().getItem();
                     player.inventory.decrStackSize(player.inventory.currentItem, 1);
                     te.iStackHandler.setStackInSlot(te.itemCount++, new ItemStack(toAdd, 1));
-                    player.sendMessage(new TextComponentString("Now added " + toAdd.getUnlocalizedName()));
                 } else {
                     this.dropAllItems(world, pos);
                 }
@@ -75,5 +75,15 @@ public class BlockBasicAltar extends BlockTileEntity<TileEntityBasicAltar> {
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
         this.dropAllItems(world, pos);
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
     }
 }
