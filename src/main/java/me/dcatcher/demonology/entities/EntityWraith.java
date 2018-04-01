@@ -1,5 +1,6 @@
 package me.dcatcher.demonology.entities;
 
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityIronGolem;
 import net.minecraft.entity.monster.EntityMob;
@@ -14,6 +15,7 @@ public class EntityWraith extends EntityMob {
     public EntityWraith(World worldIn) {
         super(worldIn);
         this.setSize(0.6F, 1.95F);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
     }
 
     @Override
