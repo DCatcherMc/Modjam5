@@ -1,6 +1,5 @@
 package me.dcatcher.demonology.block;
 
-import me.dcatcher.demonology.tileentities.TileEntityBasicAltar;
 import me.dcatcher.demonology.tileentities.TileEntityRitualStone;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

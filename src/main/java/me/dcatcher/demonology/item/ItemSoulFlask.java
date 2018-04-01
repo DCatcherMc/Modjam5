@@ -9,6 +9,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -23,6 +24,7 @@ public class ItemSoulFlask extends ItemBase {
 
     public ItemSoulFlask(String name) {
         super(name);
+        this.setMaxStackSize(1);
     }
 
     @Nullable
@@ -46,6 +48,4 @@ public class ItemSoulFlask extends ItemBase {
         NBTTagCompound nbt = stack.serializeNBT();
         return nbt;
     }
-
-
 }

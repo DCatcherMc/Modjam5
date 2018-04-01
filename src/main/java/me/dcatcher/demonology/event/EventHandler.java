@@ -2,6 +2,7 @@ package me.dcatcher.demonology.event;
 
 import me.dcatcher.demonology.Demonology;
 import me.dcatcher.demonology.entities.EntitySoul;
+import me.dcatcher.demonology.item.ItemReapersKnife;
 import me.dcatcher.demonology.item.ItemSoulFlask;
 import me.dcatcher.demonology.util.DefaultSoulHandler;
 import me.dcatcher.demonology.util.ISoulHandler;
@@ -29,8 +30,8 @@ public class EventHandler {
 
             float chance = 0.10f;
 
-            if (current instanceof ItemSword) {
-                chance = 1.0f;
+            if (current instanceof ItemReapersKnife) {
+                chance = 0.25f;
             }
 
             // check to see if we succeed
