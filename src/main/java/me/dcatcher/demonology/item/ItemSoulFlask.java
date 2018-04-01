@@ -1,12 +1,18 @@
 package me.dcatcher.demonology.item;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import me.dcatcher.demonology.Demonology;
 import me.dcatcher.demonology.util.DefaultSoulHandler;
 import me.dcatcher.demonology.util.ISoulHandler;
 import me.dcatcher.demonology.util.SoulProvider;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
@@ -33,4 +39,13 @@ public class ItemSoulFlask extends ItemBase {
             tooltip.add(ChatFormatting.DARK_GRAY + "" + ChatFormatting.ITALIC + "Souls stored: " + souls);
         }
     }
+
+    @Nullable
+    @Override
+    public NBTTagCompound getNBTShareTag(ItemStack stack) {
+        NBTTagCompound nbt = stack.serializeNBT();
+        return nbt;
+    }
+
+
 }
