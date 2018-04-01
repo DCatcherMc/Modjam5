@@ -34,7 +34,7 @@ public class TESRBasicAltar extends TileEntitySpecialRenderer<TileEntityBasicAlt
             GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA,GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE,GlStateManager.DestFactor.ZERO);
             GlStateManager.pushMatrix();
             IBakedModel ibakedmodel = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(is, te.getWorld(), null);
-            int j = this.transformModelCount(x + 0.5, y+0.75, z + 0.5, ibakedmodel, degs, i, partialTicks);
+            int j = this.transformModelCount(x + 0.5, y+0.75, z + 0.5, ibakedmodel, degs, i, partialTicks, te.isCrafting, te);
 
             boolean flag1 = ibakedmodel.isGui3d();
 
@@ -90,7 +90,10 @@ public class TESRBasicAltar extends TileEntitySpecialRenderer<TileEntityBasicAlt
     }
 
 
-    private int transformModelCount(double d1, double d2, double d3, IBakedModel model, double angle, int iter, float partialTicks) {
+    private int transformModelCount(double d1, double d2, double d3, IBakedModel model, double angle, int iter, float partialTicks, boolean crafting, TileEntityBasicAltar te) {
+        if (crafting) {
+            System.out.println("CRAFTING");
+        }
         boolean flag = model.isGui3d();
         int i = 1;
         float f2 = ItemCameraTransforms.DEFAULT.ground.scale.y;
@@ -98,9 +101,16 @@ public class TESRBasicAltar extends TileEntitySpecialRenderer<TileEntityBasicAlt
 
 
         if (flag || Minecraft.getMinecraft().getRenderManager().options != null) {
-            float f3 = (0.05f * Minecraft.getSystemTime()) % 360;
-            GlStateManager.rotate((float) (iter * angle + f3), 0.0F, 1.0F, 0.0F);
-            GlStateManager.translate(0.5, 0.05f*Math.sin(0.05f * Math.toRadians(Minecraft.getSystemTime()) + iter), 0);
+            if (crafting) {
+                float percentDone = (te.getWorld().getTotalWorldTime() - te.worldTimeCraftStarted/te.craftingTime);
+
+                GlStateManager.rotate((float) (iter * angle), 0.0F, 1.0F, 0.0F);
+                GlStateManager.translate(0.5 * (1 - percentDone), 0.05f*Math.sin(0.05f * Math.toRadians(Minecraft.getSystemTime()) + iter), 0);
+            } else {
+                float f3 = (0.05f * Minecraft.getSystemTime()) % 360;
+                GlStateManager.rotate((float) (iter * angle + f3), 0.0F, 1.0F, 0.0F);
+                GlStateManager.translate(0.5, 0.05f*Math.sin(0.05f * Math.toRadians(Minecraft.getSystemTime()) + iter), 0);
+            }
         }
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
