@@ -63,6 +63,16 @@ public class Demonology
     private static void addRecipes() {
         // test recipe please ignore
         altarRecipes.add(new AltarRecipe(new Item[]{Item.getByNameOrId("wheat")}, Item.getByNameOrId("cookie"), 1));
+        altarRecipes.add(new AltarRecipe(new Item[]{Item.getByNameOrId("wheat"), Item.getByNameOrId("wheat")}, Item.getByNameOrId("bread"), 1));
+        altarRecipes.add(new AltarRecipe(new Item[]{
+                Item.getByNameOrId("wheat"),
+                Item.getByNameOrId("wheat"),
+                Item.getByNameOrId("wheat"),
+                Item.getByNameOrId("wheat"),
+                Item.getByNameOrId("wheat"),
+                Item.getByNameOrId("wheat")
+            }, Item.getByNameOrId("bread"), 10));
+
     }
 
 }

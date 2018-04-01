@@ -23,6 +23,18 @@ public class AltarRecipe {
         this.count = count;
     }
 
+    public AltarRecipe(String recipe, RecipeTuple[] tuples, Item output, int count) {
+        this.output = output;
+        this.count = count;
+        inItems = new ArrayList<>();
+        for (RecipeTuple tuple : tuples) {
+            int num = recipe.length() - recipe.replace(tuple.representation + "", "").length();
+            for (int c = 0; c < num; c++) {
+                inItems.add(tuple.item);
+            }
+        }
+    }
+
     public boolean checkRecipe(Item[] in) {
         List<Item> cloned = new ArrayList<>(inItems);
         if (in.length > 6) return false;
@@ -32,7 +44,16 @@ public class AltarRecipe {
                 cloned.remove(in[i]);
             }
         }
-        if (cloned.size() == 0) return true;
-        else return false;
+        return cloned.size() == 0;
+    }
+
+    public class RecipeTuple {
+        public char representation;
+        public Item item;
+
+        public RecipeTuple(char representation, Item i) {
+            this.representation = representation;
+            this.item = i;
+        }
     }
 }

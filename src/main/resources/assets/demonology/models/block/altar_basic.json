@@ -1,11 +1,11 @@
 {
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"textures": {
-		"2": "blocks/stone",
-		"3": "blocks/cobblestone",
-		"4": "blocks/stone_slab_top",
-		"5": "blocks/log_oak_top",
-		"particle": "blocks/cobblestone"
+		"2": "demonology:blocks/altar_base",
+		"3": "demonology:blocks/altar_base",
+		"4": "demonology:blocks/altar_top",
+		"5": "demonology:blocks/altar_base",
+		"particle": "demonology:blocks/altar_base"
 	},
 	"elements": [
 		{
