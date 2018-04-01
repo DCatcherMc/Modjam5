@@ -18,4 +18,6 @@ public class ItemBase extends Item {
     public void registerItemModel() {
         Demonology.proxy.registerItemRenderer(this, 0, name);
     }
+
+
 }

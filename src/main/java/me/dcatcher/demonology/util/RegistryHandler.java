@@ -3,10 +3,12 @@ package me.dcatcher.demonology.util;
 import me.dcatcher.demonology.Demonology;
 import me.dcatcher.demonology.init.ModBlocks;
 import me.dcatcher.demonology.init.ModItems;
+import me.dcatcher.demonology.item.ItemSoulFlask;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -35,8 +37,8 @@ public class RegistryHandler {
     }
 
     @SubscribeEvent
-    public void attachCapabilities(AttachCapabilitiesEvent<Entity> event) {
-        if (event.getObject() instanceof EntityPlayer)
+    public void attachCapabilities(AttachCapabilitiesEvent<ItemStack> event) {
+        if (event.getObject().getItem() instanceof ItemSoulFlask)
             event.addCapability(new ResourceLocation(Demonology.MODID, "soul_capability"), new SoulProvider());
     }
 

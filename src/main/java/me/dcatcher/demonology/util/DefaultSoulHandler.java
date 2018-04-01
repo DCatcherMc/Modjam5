@@ -4,40 +4,32 @@ import me.dcatcher.demonology.Demonology;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.items.ItemStackHandler;
 
 public class DefaultSoulHandler implements ISoulHandler {
 
-    private double healthRemoved = 0;
+    private int souls = 0;
 
-    @Override
-    public void removeHealth(double removing, EntityPlayer player) {
-        this.healthRemoved += removing;
-
-        double current = player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue();
-        player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(current - removing);
-    }
-
-    @Override
-    public double getHealthRemoved() {
-        return healthRemoved;
-    }
-
-    @Override
-    public void resetHealth(EntityPlayer player) {
-        double current = player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue();
-        player.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(current + healthRemoved);
-        this.healthRemoved = 0;
-    }
-
-    @Override
-    public void setHealthRemoved(double removing) {
-        this.healthRemoved = removing;
-    }
-
-    public static ISoulHandler getHandler(Entity entity) {
-        if (entity.hasCapability(Demonology.CAPABILITY_SOUL, EnumFacing.DOWN))
-            return entity.getCapability(Demonology.CAPABILITY_SOUL, EnumFacing.DOWN);
+    public static ISoulHandler getHandler(ItemStack itemStack) {
+        if (itemStack.hasCapability(Demonology.CAPABILITY_SOUL, EnumFacing.DOWN))
+            return itemStack.getCapability(Demonology.CAPABILITY_SOUL, EnumFacing.DOWN);
         return null;
+    }
+
+    @Override
+    public void addSouls(int soulsToAdd) {
+        this.souls = Math.min(100, this.souls + soulsToAdd);
+    }
+
+    @Override
+    public int getSouls() {
+        return this.souls;
+    }
+
+    @Override
+    public void setSouls(int souls) {
+        this.souls = souls;
     }
 }

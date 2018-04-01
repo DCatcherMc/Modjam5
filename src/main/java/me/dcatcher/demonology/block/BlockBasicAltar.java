@@ -3,8 +3,6 @@ package me.dcatcher.demonology.block;
 import me.dcatcher.demonology.Demonology;
 import me.dcatcher.demonology.tileentities.TileEntityBasicAltar;
 import me.dcatcher.demonology.util.AltarRecipe;
-import me.dcatcher.demonology.util.DefaultSoulHandler;
-import me.dcatcher.demonology.util.ISoulHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
@@ -15,9 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
 
