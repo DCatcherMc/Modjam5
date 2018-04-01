@@ -25,7 +25,7 @@ public class BlockBasicAltar extends BlockTileEntity<TileEntityBasicAltar> {
 
     public BlockBasicAltar(Material blockMaterialIn, String name) {
         super(blockMaterialIn, name);
-
+        this.setHardness(1.0f);
     }
 
     @Override
@@ -48,7 +48,12 @@ public class BlockBasicAltar extends BlockTileEntity<TileEntityBasicAltar> {
                     }
                 }
                 if (!crafting) this.dropAllItems(world, pos);
-                else te.clear();
+                else {
+                    te.clear();
+                    player.setHealth(1.0f);
+                    if (player.getFoodStats().getFoodLevel() > 15) player.getFoodStats().setFoodLevel(15);
+                    world.createExplosion(player, pos.getX() + 0.5, pos.getY()+ 1, pos.getZ() + 0.5, 0, true);
+                }
             } else {
                 // place it on the altar
                 if (te.itemCount < 6) {

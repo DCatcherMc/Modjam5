@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " S ",
+        "SSS",
+        "CSC"
+    ],
+    "key": {
+        "S": {
+            "item": "minecraft:stone",
+            "data": 0
+        },
+        "C": {
+            "item": "minecraft:coal_block",
+            "data": 0
+        }
+    },
+    "result": {
+        "item": "demonology:altar_basic",
+        "data": 0
+    }
+}

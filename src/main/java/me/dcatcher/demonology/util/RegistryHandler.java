@@ -2,6 +2,7 @@ package me.dcatcher.demonology.util;
 
 import me.dcatcher.demonology.Demonology;
 import me.dcatcher.demonology.init.ModBlocks;
+import me.dcatcher.demonology.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,11 +25,13 @@ public class RegistryHandler {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         ModBlocks.registerItemBlocks(event.getRegistry());
+        ModItems.registerItems(event.getRegistry());
     }
 
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent event) {
         ModBlocks.registerModels();
+        ModItems.registerModels();
     }
 
     @SubscribeEvent

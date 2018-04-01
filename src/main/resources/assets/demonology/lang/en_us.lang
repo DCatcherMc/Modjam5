@@ -3,3 +3,5 @@ itemGroup.demonology=Demonology
 tile.demonology:altar_basic.name=Basic Soul Altar
 
 entity.soul.name=Lost Soul
+
+item.demonology:soul_flask.name=Soul Flask

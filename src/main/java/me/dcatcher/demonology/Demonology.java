@@ -1,10 +1,12 @@
 package me.dcatcher.demonology;
 
 import me.dcatcher.demonology.init.ModBlocks;
+import me.dcatcher.demonology.init.ModItems;
 import me.dcatcher.demonology.proxy.IProxy;
 import me.dcatcher.demonology.util.*;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
@@ -62,16 +64,14 @@ public class Demonology
 
     private static void addRecipes() {
         // test recipe please ignore
-        altarRecipes.add(new AltarRecipe(new Item[]{Item.getByNameOrId("wheat")}, Item.getByNameOrId("cookie"), 1));
-        altarRecipes.add(new AltarRecipe(new Item[]{Item.getByNameOrId("wheat"), Item.getByNameOrId("wheat")}, Item.getByNameOrId("bread"), 1));
         altarRecipes.add(new AltarRecipe(new Item[]{
-                Item.getByNameOrId("wheat"),
-                Item.getByNameOrId("wheat"),
-                Item.getByNameOrId("wheat"),
-                Item.getByNameOrId("wheat"),
-                Item.getByNameOrId("wheat"),
-                Item.getByNameOrId("wheat")
-            }, Item.getByNameOrId("bread"), 10));
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("glass"),
+                ItemBlock.getByNameOrId("glass"),
+                ItemBlock.getByNameOrId("glass")
+            }, ModItems.itemSoulFlask, 1));
 
     }
 
