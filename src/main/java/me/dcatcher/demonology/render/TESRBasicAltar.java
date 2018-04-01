@@ -91,9 +91,6 @@ public class TESRBasicAltar extends TileEntitySpecialRenderer<TileEntityBasicAlt
 
 
     private int transformModelCount(double d1, double d2, double d3, IBakedModel model, double angle, int iter, float partialTicks, boolean crafting, TileEntityBasicAltar te) {
-        if (crafting) {
-            System.out.println("CRAFTING");
-        }
         boolean flag = model.isGui3d();
         int i = 1;
         float f2 = ItemCameraTransforms.DEFAULT.ground.scale.y;
@@ -102,10 +99,9 @@ public class TESRBasicAltar extends TileEntitySpecialRenderer<TileEntityBasicAlt
 
         if (flag || Minecraft.getMinecraft().getRenderManager().options != null) {
             if (crafting) {
-                float percentDone = (te.getWorld().getTotalWorldTime() - te.worldTimeCraftStarted/te.craftingTime);
-
+                float percentDone = ((float)(te.getWorld().getTotalWorldTime() - te.worldTimeCraftStarted))/te.craftingTime;
                 GlStateManager.rotate((float) (iter * angle), 0.0F, 1.0F, 0.0F);
-                GlStateManager.translate(0.5 * (1 - percentDone), 0.05f*Math.sin(0.05f * Math.toRadians(Minecraft.getSystemTime()) + iter), 0);
+                GlStateManager.translate(0.01 + 0.5 * (1 - percentDone), 0, 0);
             } else {
                 float f3 = (0.05f * Minecraft.getSystemTime()) % 360;
                 GlStateManager.rotate((float) (iter * angle + f3), 0.0F, 1.0F, 0.0F);

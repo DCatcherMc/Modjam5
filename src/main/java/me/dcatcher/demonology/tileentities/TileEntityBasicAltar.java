@@ -105,6 +105,7 @@ public class TileEntityBasicAltar extends TileEntity implements ITickable {
     @Override
     public void update() {
         if (!isCrafting) return;
+        if (world.isRemote) return;
 
         if (this.world.getTotalWorldTime() - worldTimeCraftStarted > this.craftingTime) {
             // we have finished crafting!
