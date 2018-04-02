@@ -38,6 +38,7 @@ public class RenderPulse extends Render<EntityPulse> {
         GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F, 1.0F);
         this.pulse.render(entity, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0625F/2);
         GL11.glDisable(GL11.GL_BLEND);
+        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glPopMatrix();
     }
 

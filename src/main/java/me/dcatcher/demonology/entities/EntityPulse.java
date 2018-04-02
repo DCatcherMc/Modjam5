@@ -3,10 +3,11 @@ package me.dcatcher.demonology.entities;
 import com.sun.istack.internal.NotNull;
 import net.minecraft.entity.projectile.EntityFireball;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityPulse extends EntityFireball {
+public class EntityPulse extends EntityFireball implements IDemon {
 
     public EntityPulse(World world) {
         super(world);
@@ -23,8 +24,14 @@ public class EntityPulse extends EntityFireball {
     }
 
     @Override
+    protected EnumParticleTypes getParticleType() {
+        return EnumParticleTypes.SPELL;
+    }
+
+    @Override
     protected void onImpact(RayTraceResult result) {
         // trigger explosion
+        if (result.entityHit != null && result.entityHit instanceof IDemon) return;
         if (!world.isRemote) {
             this.world.createExplosion(this, result.hitVec.x, result.hitVec.y, result.hitVec.z, 1.0f, true);
             this.setDead();

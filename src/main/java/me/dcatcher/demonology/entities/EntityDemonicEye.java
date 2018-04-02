@@ -13,6 +13,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
@@ -20,7 +21,9 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class EntityDemonicEye extends EntityFlying implements IMob, IRangedAttackMob {
+public class EntityDemonicEye extends EntityFlying implements IMob, IRangedAttackMob, IDemon{
+
+    public BlockPos posStart;
 
     private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
 
@@ -34,16 +37,20 @@ public class EntityDemonicEye extends EntityFlying implements IMob, IRangedAttac
         this.moveHelper = new EntityDemonicEye.DemonicEyeMoveHelper(this);
     }
 
+    public EntityDemonicEye(World w, float x, float y, float z) {
+        super(w);
+        this.posStart = new BlockPos(x, y, z);
+    }
+
     public void addPlayerToInfo(EntityPlayerMP player) {
         this.bossInfo.addPlayer(player);
     }
 
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(2, new EntityAIAttackRanged(this, 1.0D, 40, 20.0F));
-        this.tasks.addTask(3, new AIRandomFly(this));
-        this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(7, new EntityAILookIdle(this));
+        this.tasks.addTask(5, new AIRandomFly(this));
+        this.tasks.addTask(7, new AILookAround(this));
+        this.tasks.addTask(4, new EntityAIAttackRanged(this, 1.0D, 40, 20.0F));
         this.targetTasks.addTask(1, new EntityAIFindEntityNearestPlayer(this));
     }
 
@@ -72,8 +79,10 @@ public class EntityDemonicEye extends EntityFlying implements IMob, IRangedAttac
             double d3 = target.posX - d0;
             double d4 = target.posY - d1;
             double d5 = target.posZ - d2;
-            EntityPulse entityP = new EntityPulse(this.world, this.posX, this.posY, this.posZ, d3, d4, d5);
-
+            Vec3d accel = new Vec3d(d3, d4, d5);
+            accel = accel.normalize();
+            EntityPulse entityP = new EntityPulse(this.world, this.posX + accel.x, this.posY + accel.y, this.posZ + accel.z, d3, d4, d5);
+//            EntityWitherSkull
             this.world.spawnEntity(entityP);
         }
 
@@ -134,7 +143,16 @@ public class EntityDemonicEye extends EntityFlying implements IMob, IRangedAttac
             double d1 = this.parentEntity.posY + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
             double d2 = this.parentEntity.posZ + (double)((random.nextFloat() * 2.0F - 1.0F) * 16.0F);
 
-            d1 = Math.min(d1, 100); // limit the damn entity
+            if (this.parentEntity.posStart != null) {
+                d0 = Math.min(d0, this.parentEntity.posStart.getX() + 20);
+                d0 = Math.max(d0, this.parentEntity.posStart.getX() - 20);
+
+                d1 = Math.min(d1, this.parentEntity.posStart.getY() + 10);
+                d1 = Math.max(d1, this.parentEntity.posStart.getY() - 10);
+
+                d2 = Math.min(d2, this.parentEntity.posStart.getZ() + 20);
+                d2 = Math.max(d2, this.parentEntity.posStart.getZ() - 20);
+            }
             this.parentEntity.getMoveHelper().setMoveTo(d0, d1, d2, 0.5D);
         }
     }
@@ -204,6 +222,51 @@ public class EntityDemonicEye extends EntityFlying implements IMob, IRangedAttac
             return true;
         }
     }
+
+    static class AILookAround extends EntityAIBase
+    {
+        private final EntityDemonicEye parentEntity;
+
+        public AILookAround(EntityDemonicEye demonicEye)
+        {
+            this.parentEntity = demonicEye;
+            this.setMutexBits(2);
+        }
+
+        /**
+         * Returns whether the EntityAIBase should begin execution.
+         */
+        public boolean shouldExecute()
+        {
+            return true;
+        }
+
+        /**
+         * Keep ticking a continuous task that has already been started
+         */
+        public void updateTask()
+        {
+            if (this.parentEntity.getAttackTarget() == null)
+            {
+                this.parentEntity.rotationYaw = -((float)MathHelper.atan2(this.parentEntity.motionX, this.parentEntity.motionZ)) * (180F / (float)Math.PI);
+                this.parentEntity.renderYawOffset = this.parentEntity.rotationYaw;
+            }
+            else
+            {
+                EntityLivingBase entitylivingbase = this.parentEntity.getAttackTarget();
+                double d0 = 64.0D;
+
+                if (entitylivingbase.getDistanceSq(this.parentEntity) < 4096.0D)
+                {
+                    double d1 = entitylivingbase.posX - this.parentEntity.posX;
+                    double d2 = entitylivingbase.posZ - this.parentEntity.posZ;
+                    this.parentEntity.rotationYaw = -((float)MathHelper.atan2(d1, d2)) * (180F / (float)Math.PI);
+                    this.parentEntity.renderYawOffset = this.parentEntity.rotationYaw;
+                }
+            }
+        }
+    }
+
 
 
 }
