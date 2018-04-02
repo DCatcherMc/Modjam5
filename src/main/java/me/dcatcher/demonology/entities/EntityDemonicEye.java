@@ -72,12 +72,9 @@ public class EntityDemonicEye extends EntityFlying implements IMob, IRangedAttac
             double d3 = target.posX - d0;
             double d4 = target.posY - d1;
             double d5 = target.posZ - d2;
-            EntityWitherSkull entitywitherskull = new EntityWitherSkull(this.world, this, d3, d4, d5);
+            EntityPulse entityP = new EntityPulse(this.world, this.posX, this.posY, this.posZ, d3, d4, d5);
 
-            entitywitherskull.posY = d1;
-            entitywitherskull.posX = d0;
-            entitywitherskull.posZ = d2;
-            this.world.spawnEntity(entitywitherskull);
+            this.world.spawnEntity(entityP);
         }
 
     }
