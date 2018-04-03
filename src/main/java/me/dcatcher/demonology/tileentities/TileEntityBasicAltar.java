@@ -15,7 +15,6 @@ import net.minecraftforge.items.ItemStackHandler;
 public class TileEntityBasicAltar extends TileEntity implements ITickable {
 
     public ItemStackHandler iStackHandler;
-    public InventoryHelper invHelper;
     public int itemCount = 0;
 
     public boolean isCrafting = false;
@@ -26,7 +25,6 @@ public class TileEntityBasicAltar extends TileEntity implements ITickable {
 
     public TileEntityBasicAltar() {
         iStackHandler = new ItemStackHandler(7);
-        invHelper = new InventoryHelper();
     }
 
     @Override
