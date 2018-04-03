@@ -37,6 +37,7 @@ public class Demonology
     public static Demonology instance;
 
     public static List<AltarRecipe> altarRecipes = new ArrayList<>();
+    public static List<Ritual> rituals = new ArrayList<>();
 
     @SidedProxy(clientSide = "me.dcatcher.demonology.proxy.ClientProxy",
             serverSide = "me.dcatcher.demonology.proxy.CommonProxy")
@@ -63,7 +64,7 @@ public class Demonology
     }
 
     private static void addRecipes() {
-        // test recipe please ignore
+        // 3 stone + 3 glass = 1 soul flask
         altarRecipes.add(new AltarRecipe(new Item[]{
                 ItemBlock.getByNameOrId("stone"),
                 ItemBlock.getByNameOrId("stone"),
@@ -71,7 +72,25 @@ public class Demonology
                 ItemBlock.getByNameOrId("glass"),
                 ItemBlock.getByNameOrId("glass"),
                 ItemBlock.getByNameOrId("glass")
-            }, ModItems.itemSoulFlask, 1));
+        }, ModItems.itemSoulFlask, 1));
+
+        // 2 iron ingots + 1 stone + 1 stick = 1 Reaper's Knife
+        altarRecipes.add(new AltarRecipe(new Item[]{
+                Item.getByNameOrId("iron_ingot"),
+                Item.getByNameOrId("iron_ingot"),
+                ItemBlock.getByNameOrId("stone"),
+                Item.getByNameOrId("stick")
+        }, ModItems.itemReapersKnife, 1));
+
+
+        // must be square!
+        rituals.add(new Ritual(
+                new String[] {
+                        " d ",
+                        "drd",
+                        " d "
+                }, 0, 1
+        ));
 
     }
 

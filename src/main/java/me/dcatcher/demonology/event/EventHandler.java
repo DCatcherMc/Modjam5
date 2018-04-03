@@ -2,6 +2,9 @@ package me.dcatcher.demonology.event;
 
 import me.dcatcher.demonology.Demonology;
 import me.dcatcher.demonology.entities.EntitySoul;
+import me.dcatcher.demonology.entities.EntityWraith;
+import me.dcatcher.demonology.init.ModItems;
+import me.dcatcher.demonology.item.ItemEvilEye;
 import me.dcatcher.demonology.item.ItemReapersKnife;
 import me.dcatcher.demonology.item.ItemSoulFlask;
 import me.dcatcher.demonology.util.DefaultSoulHandler;
@@ -37,10 +40,24 @@ public class EventHandler {
             // check to see if we succeed
             if (Demonology.random.nextFloat() < chance) {
                 // we succeed!
-                EntitySoul soul = new EntitySoul(event.getEntity().world);
+
+                // will we spawn a neutral soul or corrup one to form a wraith
+                ItemStack evilEye = inventoryContainsItem(player, ItemEvilEye.class);
+
+
+                float chanceOfWraith = (evilEye == null) ? 0.10f : 0.01f;
+
                 Entity dead = event.getEntity();
-                soul.setPosition(dead.posX, dead.posY, dead.posZ);
-                event.getEntity().world.spawnEntity(soul);
+                if (Math.random() < chanceOfWraith) {
+                    // uh oh, wraith time
+                    EntityWraith wraith = new EntityWraith(event.getEntity().world);
+                    wraith.setPosition(dead.posX, dead.posY, dead.posZ);
+                    event.getEntity().world.spawnEntity(wraith);
+                } else {
+                    EntitySoul soul = new EntitySoul(event.getEntity().world);
+                    soul.setPosition(dead.posX, dead.posY, dead.posZ);
+                    event.getEntity().world.spawnEntity(soul);
+                }
 
                 // add to the flask if we have one!
                 ItemStack soulFlask = inventoryContainsItem(player, ItemSoulFlask.class);
