@@ -38,8 +38,9 @@ public class EntityDemonicEye extends EntityFlying implements IMob, IRangedAttac
     }
 
     public EntityDemonicEye(World w, float x, float y, float z) {
-        super(w);
+        this(w);
         this.posStart = new BlockPos(x, y, z);
+        this.setPosition(x, y, z);
     }
 
     public void addPlayerToInfo(EntityPlayerMP player) {

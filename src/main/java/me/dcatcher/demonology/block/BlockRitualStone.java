@@ -1,7 +1,11 @@
 package me.dcatcher.demonology.block;
 
+import me.dcatcher.demonology.Demonology;
 import me.dcatcher.demonology.entities.EntityDemonicEye;
 import me.dcatcher.demonology.tileentities.TileEntityRitualStone;
+import me.dcatcher.demonology.util.ISoulHandler;
+import me.dcatcher.demonology.util.Ritual;
+import me.dcatcher.demonology.util.RitualExecutor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,10 +28,14 @@ public class BlockRitualStone extends BlockTileEntity<TileEntityRitualStone> {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
-            EntityDemonicEye ede = new EntityDemonicEye(world);
-            ede.setPosition(pos.getX(), pos.getY()+5, pos.getZ());
-            ede.addPlayerToInfo((EntityPlayerMP) player);
-            world.spawnEntity(ede);
+            // summoning time!
+            // dont actually need a TE rn
+            for (Ritual r : RitualExecutor.rituals) {
+                ISoulHandler ish;
+                if ((ish = r.canComplete(world, pos)) != null) {
+                    RitualExecutor.executeRitual(r, world, pos, ish, player);
+                }
+            }
         }
         return true;
     }

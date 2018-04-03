@@ -37,7 +37,6 @@ public class Demonology
     public static Demonology instance;
 
     public static List<AltarRecipe> altarRecipes = new ArrayList<>();
-    public static List<Ritual> rituals = new ArrayList<>();
 
     @SidedProxy(clientSide = "me.dcatcher.demonology.proxy.ClientProxy",
             serverSide = "me.dcatcher.demonology.proxy.CommonProxy")
@@ -82,16 +81,6 @@ public class Demonology
                 Item.getByNameOrId("stick")
         }, ModItems.itemReapersKnife, 1));
 
-
-        // must be square!
-        rituals.add(new Ritual(
-                new String[] {
-                        " d ",
-                        "drd",
-                        " d "
-                }, 0, 1
-        ));
-
+        RitualExecutor.registerRituals();
     }
-
 }

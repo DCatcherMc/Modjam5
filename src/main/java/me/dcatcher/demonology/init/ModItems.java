@@ -1,6 +1,5 @@
 package me.dcatcher.demonology.init;
 
-import me.dcatcher.demonology.item.ItemBase;
 import me.dcatcher.demonology.item.ItemEvilEye;
 import me.dcatcher.demonology.item.ItemReapersKnife;
 import me.dcatcher.demonology.item.ItemSoulFlask;
