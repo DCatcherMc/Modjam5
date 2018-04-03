@@ -5,8 +5,6 @@ import me.dcatcher.demonology.init.ModBlocks;
 import me.dcatcher.demonology.init.ModItems;
 import me.dcatcher.demonology.item.ItemSoulFlask;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;

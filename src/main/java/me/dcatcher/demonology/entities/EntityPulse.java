@@ -1,8 +1,6 @@
 package me.dcatcher.demonology.entities;
 
-import com.sun.istack.internal.NotNull;
 import net.minecraft.entity.projectile.EntityFireball;
-import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;

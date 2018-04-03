@@ -57,7 +57,6 @@ public class BlockBasicAltar extends BlockTileEntity<TileEntityBasicAltar> {
     }
 
 
-
     public void doCrafting(TileEntityBasicAltar te, EntityPlayer player, World world, BlockPos pos) {
         Item[] contents = te.getContents();
         ItemStack st = null;
@@ -85,18 +84,17 @@ public class BlockBasicAltar extends BlockTileEntity<TileEntityBasicAltar> {
                 this.punishPlayer(player);
             }
 //            world.createExplosion(player, pos.getX() + 0.5, pos.getY()+ 1, pos.getZ() + 0.5, 0, true);
-            te.startCrafting(st, world, 20*2);
+            te.startCrafting(st, world, 20 * 2);
             te.markDirty();
         }
     }
-
 
 
     private void dropAllItems(World world, BlockPos pos) {
         TileEntityBasicAltar te = this.getTileEntity(world, pos);
         for (int i = 0; i < te.itemCount; i++) {
             ItemStack is = te.iStackHandler.getStackInSlot(i);
-            EntityItem toDrop = new EntityItem(world, pos.getX(), pos.getY()+1, pos.getZ(), is);
+            EntityItem toDrop = new EntityItem(world, pos.getX(), pos.getY() + 1, pos.getZ(), is);
             world.spawnEntity(toDrop);
         }
         te.clear();

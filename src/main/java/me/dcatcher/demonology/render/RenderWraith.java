@@ -1,6 +1,5 @@
 package me.dcatcher.demonology.render;
 
-import me.dcatcher.demonology.entities.EntityDemonicEye;
 import me.dcatcher.demonology.entities.EntityWraith;
 import me.dcatcher.demonology.render.model.ModelWraith;
 import net.minecraft.client.renderer.entity.Render;

@@ -1,7 +1,6 @@
 package me.dcatcher.demonology.item;
 
 import me.dcatcher.demonology.Demonology;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemSword;
 
 public class ItemReapersKnife extends ItemSword {

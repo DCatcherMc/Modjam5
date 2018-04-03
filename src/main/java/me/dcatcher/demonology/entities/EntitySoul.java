@@ -1,17 +1,11 @@
 package me.dcatcher.demonology.entities;
 
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityFlying;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIFollowOwnerFlying;
-import net.minecraft.entity.ai.EntityFlyHelper;
 import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.CapabilityManager;
 
 public class EntitySoul extends EntityCreature implements IDemon {
 

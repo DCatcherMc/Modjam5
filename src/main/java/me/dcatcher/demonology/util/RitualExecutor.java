@@ -1,7 +1,6 @@
 package me.dcatcher.demonology.util;
 
 import me.dcatcher.demonology.entities.EntityDemonicEye;
-import me.dcatcher.demonology.entities.EntityWraith;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;

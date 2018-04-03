@@ -3,7 +3,6 @@ package me.dcatcher.demonology.event;
 import me.dcatcher.demonology.Demonology;
 import me.dcatcher.demonology.entities.EntitySoul;
 import me.dcatcher.demonology.entities.EntityWraith;
-import me.dcatcher.demonology.init.ModItems;
 import me.dcatcher.demonology.item.ItemEvilEye;
 import me.dcatcher.demonology.item.ItemReapersKnife;
 import me.dcatcher.demonology.item.ItemSoulFlask;
@@ -14,12 +13,9 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import javax.swing.*;
 
 @Mod.EventBusSubscriber(modid = Demonology.MODID)
 public class EventHandler {

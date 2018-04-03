@@ -1,7 +1,5 @@
 package me.dcatcher.demonology.block;
 
-import me.dcatcher.demonology.Demonology;
-import me.dcatcher.demonology.entities.EntityDemonicEye;
 import me.dcatcher.demonology.tileentities.TileEntityRitualStone;
 import me.dcatcher.demonology.util.ISoulHandler;
 import me.dcatcher.demonology.util.Ritual;
@@ -9,7 +7,6 @@ import me.dcatcher.demonology.util.RitualExecutor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;

@@ -1,12 +1,8 @@
 package me.dcatcher.demonology.util;
 
 import me.dcatcher.demonology.Demonology;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.items.ItemStackHandler;
 
 public class DefaultSoulHandler implements ISoulHandler {
 
