@@ -8,6 +8,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -60,6 +62,9 @@ public class Demonology
         ModBlocks.registerTileEntities();
         proxy.init(event);
         Demonology.addRecipes();
+
+        // loot tables
+        LootTableList.register(new ResourceLocation(MODID, "loot_demonic_eye"));
     }
 
     private static void addRecipes() {

@@ -1,6 +1,7 @@
 package me.dcatcher.demonology.util;
 
 import me.dcatcher.demonology.entities.EntityDemonicEye;
+import me.dcatcher.demonology.entities.EntityWraith;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
@@ -18,6 +19,14 @@ public class RitualExecutor {
                     " d ",
                     "drd",
                     " d "
+            }, 0, 40
+    );
+
+    public static final Ritual enchantItem = new Ritual("enchantItem",
+            new String[] {
+                    " R ",
+                    "RrR",
+                    " R "
             }, 0, 10
     );
 
@@ -27,8 +36,6 @@ public class RitualExecutor {
     }
 
     public static void executeRitual(Ritual r, World world, BlockPos pos, ISoulHandler ish, EntityPlayer player) {
-        r.destroyBlocks(world, pos);
-        ish.addSouls(-r.soulCost);
 
         switch(r.name) {
             case "summonEye":
@@ -36,9 +43,19 @@ public class RitualExecutor {
                 eye.addPlayerToInfo((EntityPlayerMP) player);
                 world.spawnEntity(eye);
                 break;
+            case "enchantItem":
+                enchantItem(world, pos, player);
+                break;
             default:
                 // do nothing
         }
+
+        r.destroyBlocks(world, pos);
+        ish.addSouls(-r.soulCost);
+    }
+
+    public static void enchantItem(World world, BlockPos pos, EntityPlayer player) {
+
     }
 
 }

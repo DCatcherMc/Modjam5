@@ -103,9 +103,9 @@ public class TESRBasicAltar extends TileEntitySpecialRenderer<TileEntityBasicAlt
                 GlStateManager.rotate((float) (iter * angle), 0.0F, 1.0F, 0.0F);
                 GlStateManager.translate(0.01 + 0.5 * (1 - percentDone), 0, 0);
             } else {
-                float f3 = (0.05f * Minecraft.getSystemTime()) % 360;
+                float f3 = (0.05f * (Minecraft.getSystemTime() + partialTicks)) % 360;
                 GlStateManager.rotate((float) (iter * angle + f3), 0.0F, 1.0F, 0.0F);
-                GlStateManager.translate(0.5, 0.05f*Math.sin(0.05f * Math.toRadians(Minecraft.getSystemTime()) + iter), 0);
+                GlStateManager.translate(0.5, 0, 0);
             }
         }
 

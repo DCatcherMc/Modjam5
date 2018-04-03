@@ -65,7 +65,9 @@ public class Ritual {
             for (int z = 0; z < l; z++) {
                 Block shouldBe = Ritual.getBlockFromChar(this.ritualLayout[x].charAt(z));
                 if (shouldBe == null) continue;
-                world.setBlockToAir(centre.add(x-1, 0, z-1));
+                BlockPos pos = centre.add(x-1, 0, z-1);
+                world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 0, true);
+                world.setBlockToAir(pos);
             }
         }
     }
@@ -77,6 +79,8 @@ public class Ritual {
             case 'r':
                 // is the ritual stone so can be ignored!
                 return null;
+            case 'R':
+                return Block.getBlockFromName("redstone_block");
             default:
                 return null;
         }

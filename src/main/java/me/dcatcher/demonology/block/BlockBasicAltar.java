@@ -39,9 +39,8 @@ public class BlockBasicAltar extends BlockTileEntity<TileEntityBasicAltar> {
             } else {
                 // place it on the altar
                 if (te.itemCount < 6) {
-                    Item toAdd = player.inventory.getCurrentItem().getItem();
-                    player.inventory.decrStackSize(player.inventory.currentItem, 1);
-                    te.iStackHandler.setStackInSlot(te.itemCount++, new ItemStack(toAdd, 1));
+                    ItemStack removed = player.inventory.decrStackSize(player.inventory.currentItem, 1);
+                    te.iStackHandler.setStackInSlot(te.itemCount++, removed);
                 } else {
                     this.dropAllItems(world, pos);
                 }

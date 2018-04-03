@@ -1,5 +1,6 @@
 package me.dcatcher.demonology.init;
 
+import me.dcatcher.demonology.item.ItemDemonicPulsator;
 import me.dcatcher.demonology.item.ItemEvilEye;
 import me.dcatcher.demonology.item.ItemReapersKnife;
 import me.dcatcher.demonology.item.ItemSoulFlask;
@@ -11,12 +12,14 @@ public class ModItems {
     public static final ItemSoulFlask itemSoulFlask = new ItemSoulFlask("soul_flask");
     public static final ItemReapersKnife itemReapersKnife = new ItemReapersKnife("reapers_knife");
     public static final ItemEvilEye itemEvilEye = new ItemEvilEye("evil_eye");
+    public static final ItemDemonicPulsator itemDemonicPulsator = new ItemDemonicPulsator("demonic_pulsator");
 
     public static void registerItems(IForgeRegistry<Item> registry) {
         registry.registerAll(
                 itemSoulFlask,
                 itemReapersKnife,
-                itemEvilEye
+                itemEvilEye,
+                itemDemonicPulsator
         );
     }
 
@@ -24,6 +27,7 @@ public class ModItems {
         itemSoulFlask.registerItemModel();
         itemReapersKnife.registerItemModel();
         itemEvilEye.registerItemModel();
+        itemDemonicPulsator.registerItemModel();
     }
 
 }

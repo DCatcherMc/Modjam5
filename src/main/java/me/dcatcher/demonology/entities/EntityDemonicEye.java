@@ -1,6 +1,7 @@
 package me.dcatcher.demonology.entities;
 
 import com.google.common.base.Predicate;
+import me.dcatcher.demonology.Demonology;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.boss.EntityWither;
@@ -10,6 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityWitherSkull;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -29,7 +31,7 @@ public class EntityDemonicEye extends EntityFlying implements IMob, IRangedAttac
 
     public EntityDemonicEye(World worldIn) {
         super(worldIn);
-        this.setSize(4.0F, 4.0F);
+        this.setSize(3.0F, 3.0F);
         this.experienceValue = 5;
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(100.0D);
@@ -41,6 +43,12 @@ public class EntityDemonicEye extends EntityFlying implements IMob, IRangedAttac
         this(w);
         this.posStart = new BlockPos(x, y, z);
         this.setPosition(x, y, z);
+    }
+
+    @Nullable
+    @Override
+    protected ResourceLocation getLootTable() {
+        return new ResourceLocation(Demonology.MODID, "loot_demonic_eye");
     }
 
     public void addPlayerToInfo(EntityPlayerMP player) {

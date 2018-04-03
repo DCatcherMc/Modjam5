@@ -45,7 +45,7 @@ public class EventHandler {
                 ItemStack evilEye = inventoryContainsItem(player, ItemEvilEye.class);
 
 
-                float chanceOfWraith = (evilEye == null) ? 0.10f : 0.01f;
+                float chanceOfWraith = (evilEye == null) ? 0.10f : 0.00f;
 
                 Entity dead = event.getEntity();
                 if (Math.random() < chanceOfWraith) {

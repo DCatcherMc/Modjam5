@@ -24,8 +24,6 @@ public class ModelSoul extends ModelBase {
         GlStateManager.pushMatrix();
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glScalef(this.scale, this.scale, this.scale);
-        GlStateManager.rotate(entity.rotationYaw - 90.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(entity.rotationPitch, 0.0F, 0.0F, 1.0F);
         this.soulBody.render(scale);
         GL11.glDisable(GL11.GL_BLEND);
         GlStateManager.popMatrix();

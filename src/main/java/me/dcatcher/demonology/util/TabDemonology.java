@@ -1,9 +1,7 @@
 package me.dcatcher.demonology.util;
 
-import com.sun.org.apache.bcel.internal.Constants;
+import me.dcatcher.demonology.init.ModItems;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 
 public class TabDemonology extends CreativeTabs {
@@ -15,6 +13,6 @@ public class TabDemonology extends CreativeTabs {
     @Override
     public ItemStack getTabIconItem() {
         // todo - when blocks and items actually added...
-        return new ItemStack(Item.getByNameOrId("skull"), 1);
+        return new ItemStack(ModItems.itemSoulFlask);
     }
 }
