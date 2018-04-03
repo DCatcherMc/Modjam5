@@ -86,6 +86,37 @@ public class Demonology
                 Item.getByNameOrId("stick")
         }, ModItems.itemReapersKnife, 1));
 
+        // 2 iron ingots + 1 stone + 1 stick = 1 Reaper's Knife
+        altarRecipes.add(new AltarRecipe(new Item[]{
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("stone")
+        }, ModItems.itemDemonicRod, 3));
+
+        altarRecipes.add(new AltarRecipe(new Item[]{
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("stone")
+        }, ModItems.itemDemonicRod, 1));
+
+        altarRecipes.add(new AltarRecipe(new Item[]{
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("stone"),
+                ItemBlock.getByNameOrId("stone")
+        }, ModItems.itemDemonicRod, 2));
+
+        altarRecipes.add(new AltarRecipe(new Item[]{
+                ModItems.itemDemonicRod,
+                ModItems.itemDemonicRod,
+                ModItems.itemDemonicRod,
+                Item.getByNameOrId("diamond"),
+                Item.getByNameOrId("diamond"),
+                ModItems.itemEvilEye
+        }, ModItems.itemDemonicPulsator, 1));
+
         RitualExecutor.registerRituals();
     }
 }
